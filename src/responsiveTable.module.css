@@ -26,14 +26,14 @@
 .table .table_row .table_cell {
   box-sizing: border-box;
   flex-grow: 1;
-  padding: 0.8em 1.2em;
+  padding: 0.4em 1.2em;
   overflow: hidden;
   list-style: none;
 }
 .table .table_row .table_cell.column_label {
   background-color: #43BAC0;
   color: white;
-  padding: 1em;
+  padding: 0.4em;
 }
 .table .table_row .table_cell .table_cell_label {
   display: none;
@@ -53,18 +53,6 @@
     width: 100%;
     padding: 1em;
     box-shadow: none;
-    /*    
-    .topic_cell {
-      background-color: @heading-color;
-      color: white;
-      font-weight: 700;
-      order: -1;
-      
-      .table_cell_content {
-        padding-left: 0 !important;
-      }
-    }
-*/
   }
   .table_collapse .table_row {
     box-sizing: border-box;
@@ -92,6 +80,15 @@
   .table_collapse .table_row .table_cell .table_cell_content {
     flex: 2;
     padding-left: 1em;
+  }
+  .table_collapse .topic_cell {
+    background-color: #43BAC0;
+    color: white;
+    font-weight: 700;
+    order: -1;
+  }
+  .table_collapse .topic_cell .table_cell_content {
+    padding-left: 0 !important;
   }
   .table_collapse .table_row_head {
     display: none;

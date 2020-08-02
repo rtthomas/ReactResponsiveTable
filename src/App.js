@@ -24,7 +24,7 @@ function App() {
     ]
     return (
         <div className="App">
-            <ResponsiveTable data={data} labels={labels}/>
+            <ResponsiveTable data={data} labels={labels} primary={2}/>
         </div>
     );
 }
