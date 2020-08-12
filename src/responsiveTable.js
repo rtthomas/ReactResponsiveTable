@@ -1,5 +1,5 @@
 /*
-A responsive table component. It switches from a conventional table to the Collapse By Rows form
+* A responsive table component. It switches from a conventional table to the Collapse By Rows form
 */
 import React from 'react';
 import classes from './responsiveTable.module.css'
@@ -12,9 +12,9 @@ import classes from './responsiveTable.module.css'
  * @returns the Table 
  */
 const responsiveTable = props => {
-    const tableClasses = [classes.table, classes.table_collapse].join(' ');
+//    const tableClasses = [classes.table, classes.table_collapse].join(' ');
     return (
-        <div className={tableClasses}>
+        <div className={classes.table}>
             <Header labels={props.labels}/>
             {props.data.map((datum, index) => {
                 return <Row data={datum} striped={index % 2 === 1} labels={props.labels} primary={props.primary} key={index}/>
@@ -29,12 +29,12 @@ const responsiveTable = props => {
  * @returns the Header 
  */
 const Header = props => {
-    const headerClasses = [classes.table_row, classes.table_row_head].join(' ')
-    const columnClasses = [classes.table_cell, classes.column_label].join(' ');   
+//    const headerClasses = [classes.table_row, classes.table_row_head].join(' ')
+//    const columnClasses = [classes.table_cell, classes.column_label].join(' ');   
     return (
-        <div className={headerClasses}>
+        <div className={classes.header}>
             {props.labels.map((label, index) => {
-                return <div className={columnClasses} key={index}>{label}</div>
+                return <div className={classes.label} key={index}>{label}</div>
             })}
         </div>
     )
@@ -49,9 +49,9 @@ const Header = props => {
  */
 const Row = props => {
     const values = Object.values(props.data)
-    let rowClasses = [classes.table_row];
+    let rowClasses = [classes.row];
     if (props.striped){
-        rowClasses = rowClasses.concat(classes.is_striped).join(' ')
+        rowClasses = rowClasses.concat(classes.striped).join(' ')
     }
     return (
         <div className={rowClasses}>
@@ -70,19 +70,30 @@ const Row = props => {
  * @returns the Cell
  */
 const Cell = props => {
-    let outerClasses = [classes.table_cell];
-    console.log('-----------------------------------------------\n' + outerClasses);
-    if (props.primary){
-        outerClasses = outerClasses.concat(classes.topic_cell).join(' ');
-        console.log('---' + outerClasses)
-    }
-    console.log(outerClasses);
+
+    // let outerClasses = [classes.table_cell];
+    // console.log('-----------------------------------------------\n' + outerClasses);
+    // if (props.primary){
+    //     outerClasses = outerClasses.concat(classes.topic_cell).join(' ');
+    //     console.log('---' + outerClasses)
+    // }
+    // console.log(outerClasses);
+    const outerClasses = classes.cell;
+    /*
     return (
         <div className={outerClasses}>
             {props.primary ? '' : <div className={classes.table_cell_label}>{props.label}</div>}
             <div className={classes.table_cell_content}>{props.value}</div>
         </div>
     )
+    */
+    return (
+        <div className={outerClasses}>
+            <div className={classes.label_collapse}>{props.label}</div>
+            <div className={classes.content}>{props.value}</div>
+        </div>
+    )
+
 }
 
 export default responsiveTable;

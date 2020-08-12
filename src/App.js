@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ResponsiveTable from './responsiveTable'
 
@@ -19,7 +18,7 @@ function App() {
         {
             alpha: 'AAA',
             beta: 'BBB',
-            gamma: 'CCC'
+            gamma: 'CCCCCC'
         }
     ]
     return (
