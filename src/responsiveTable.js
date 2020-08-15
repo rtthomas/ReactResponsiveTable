@@ -83,7 +83,6 @@ const Row = props => {
 const Cell = props => {
     const style = { width: props.width + '%' }
     const outerClasses = classes.cell;
-    const labelColor = {backgroundColor : props.colors.headerBg} 
     return (
         <div className={outerClasses} style={style}>
             <div className={classes.label_collapse} >{props.label}</div>
