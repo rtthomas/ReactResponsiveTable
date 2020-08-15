@@ -6,6 +6,8 @@ I haven't found a simple React table component that displays a table responsivel
 - the conventional header row followed by with content rows, or
 - on small screens, in "columnar" form, displaying the data as successive groups of label/value pairs  
 
+Most of the components I've found so far just add horizontal scrollbars
+
 ### This is a Work in Progress
 I plan to publish this eventually as a module on npm. Meanwhile..
 
