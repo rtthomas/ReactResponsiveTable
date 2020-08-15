@@ -1,11 +1,25 @@
 # ReactResponsiveTable
 A React component for rendering a responsive table
 
-### This is a Work in Progress
-Between gigs and hunkered down in these Covid-19 times, I'm working on a personal MERN project. I need a React component implementing a responsive table that switches from a "conventional" table layout to a "columnar" layout.
+## Rationale
+I haven't found a simple React table component that displays a table responsively in these formats:
+- the conventional header row followed by with content rows, or
+- on small screens, in "columnar" form, displaying the data as successive groups of label/value pairs  
 
-The conventional layout displays a matrix comprising a header with cell labels, folowed by zero or more rows each displaing the cell vcalue. The columnar displays each object as a vertically aligned set of label-value pairs.
+## This is a Work in Progress
+I plan to publish this eventually as a module on npm. Meanwhile..
 
-I thought there must be lots of solutions out there, but I haven't found them. So I'm working on this one. Thanks to Thiru from whose codepen example https://codepen.io/Thiru/pen/bmxvZK I adapted the responsive styling.
+### 1. To Install 
+Copy responsiveTable.js and responsiveTable.module.css to the folder appropriate to your project organization
 
-Nowhere near finished. Stay tuned.
+### 2. To Use It
+The App.js file provides an example of its use:
+- define tha column labels
+- define the array of objects comprising the rows
+- define the table colors
+
+Just add it like this: 
+
+
+
+
