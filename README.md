@@ -15,6 +15,8 @@ Copy responsiveTable.js and responsiveTable.module.css to the folder appropriate
 #### 2. To Use It
 The App.js file provides an example of its use:
 - define the column labels
-- define the array of objects comprising the rows
+- define the array of objects comprising the row data
 - define the table colors
 - render the ResponsiveTable component
+
+Notev that the names of the properties in each row data instance are irrelevant. The data are just tuples of values independent of their attribute labels
