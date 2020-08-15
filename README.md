@@ -17,9 +17,4 @@ The App.js file provides an example of its use:
 - define tha column labels
 - define the array of objects comprising the rows
 - define the table colors
-
-Just add it like this: 
-
-
-
-
+- render the ResponsiveTable component
