@@ -12,12 +12,19 @@ import classes from './responsiveTable.module.css'
  * @returns the Table 
  */
 const responsiveTable = props => {
-//    const tableClasses = [classes.table, classes.table_collapse].join(' ');
+    const cellWidth = ((1 / props.labels.length) * 100).toString().split('.')[0];
     return (
         <div className={classes.table}>
-            <Header labels={props.labels}/>
+            <Header labels={props.labels} cellWidth={cellWidth} colors={props.colors} />
             {props.data.map((datum, index) => {
-                return <Row data={datum} striped={index % 2 === 1} labels={props.labels} primary={props.primary} key={index}/>
+                return (
+                    <Row data={datum} 
+                    striped={index % 2 === 1} 
+                    labels={props.labels} 
+                    colors={props.colors} 
+                    cellWidth={cellWidth} 
+                    primary={props.primary} key={index}/>
+                )
             })}
         </div>
      )
@@ -29,12 +36,15 @@ const responsiveTable = props => {
  * @returns the Header 
  */
 const Header = props => {
-//    const headerClasses = [classes.table_row, classes.table_row_head].join(' ')
-//    const columnClasses = [classes.table_cell, classes.column_label].join(' ');   
+    const labelStyle = { width: props.cellWidth + '%' }
+    const colorStyles = { 
+        backgroundColor : props.colors.headerBg,
+        color: props.colors.headerText
+    }
     return (
-        <div className={classes.header}>
+        <div className={classes.header} style={colorStyles}>
             {props.labels.map((label, index) => {
-                return <div className={classes.label} key={index}>{label}</div>
+                return <div style={labelStyle} key={index}>{label}</div>
             })}
         </div>
     )
@@ -49,14 +59,15 @@ const Header = props => {
  */
 const Row = props => {
     const values = Object.values(props.data)
-    let rowClasses = [classes.row];
+    const rowClasses = [classes.row];
+    let colorStyles = {color: props.colors.rowText}
     if (props.striped){
-        rowClasses = rowClasses.concat(classes.striped).join(' ')
-    }
+        colorStyles.backgroundColor = props.colors.rowStripe
+    } 
     return (
-        <div className={rowClasses}>
+        <div className={rowClasses} style={colorStyles}>
             {values.map((value, index)=> {
-                return <Cell value={value} label={props.labels[index]} primary = {props.primary === index} key={index}/>
+                return <Cell value={value} label={props.labels[index]} width={props.cellWidth} colors={props.colors} primary = {props.primary === index} key={index}/>
             })}
         </div>
     )
@@ -70,27 +81,13 @@ const Row = props => {
  * @returns the Cell
  */
 const Cell = props => {
-
-    // let outerClasses = [classes.table_cell];
-    // console.log('-----------------------------------------------\n' + outerClasses);
-    // if (props.primary){
-    //     outerClasses = outerClasses.concat(classes.topic_cell).join(' ');
-    //     console.log('---' + outerClasses)
-    // }
-    // console.log(outerClasses);
+    const style = { width: props.width + '%' }
     const outerClasses = classes.cell;
-    /*
+    const labelColor = {backgroundColor : props.colors.headerBg} 
     return (
-        <div className={outerClasses}>
-            {props.primary ? '' : <div className={classes.table_cell_label}>{props.label}</div>}
-            <div className={classes.table_cell_content}>{props.value}</div>
-        </div>
-    )
-    */
-    return (
-        <div className={outerClasses}>
-            <div className={classes.label_collapse}>{props.label}</div>
-            <div className={classes.content}>{props.value}</div>
+        <div className={outerClasses} style={style}>
+            <div className={classes.label_collapse} >{props.label}</div>
+            <div className={classes.content} >{props.value}</div>
         </div>
     )
 
