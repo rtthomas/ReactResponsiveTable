@@ -19,4 +19,4 @@ The App.js file provides an example of its use:
 - define the table colors
 - render the ResponsiveTable component
 
-Note that dsata array in App.js illustrates that the property names in each row data object are irrelevant. The data are just tuples of values independent of their attribute names
+Note that data array in App.js illustrates that the property names in each row data object are irrelevant. The data are just tuples of values independent of their attribute names
