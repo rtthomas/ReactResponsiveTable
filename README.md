@@ -19,4 +19,4 @@ The App.js file provides an example of its use:
 - define the table colors
 - render the ResponsiveTable component
 
-Notev that the names of the properties in each row data instance are irrelevant. The data are just tuples of values independent of their attribute labels
+Note that the names of the properties in each row data instance are irrelevant. The data are just tuples of values independent of their attribute labels
