@@ -2,18 +2,11 @@ body {background: white;}
 .table { 
     border: 1px solid black; 
     width: 100%; 
-/*    padding:0.2em;*/
-    background-color: white;
     text-align: left;
     }
 .header {
     display: flex;
-    background-color: grey;
     padding: 0.2em;
-    }
-.label {
-/*    display: inline; */
-    width: 33.3%;
     }
 .label_collapse {
     display: none;
@@ -23,19 +16,13 @@ body {background: white;}
     padding: 0.2em;
     }
 .cell {
-    width: 33.3%;
     overflow: hidden;
     }
-.striped {
-    background-color: azure;
-    }
-
 @media all and (max-width: 768px) {
 .header {
     display: none;
     }
 .row {
-    margin-bottom: 1em;
     flex-direction: column;
     }
 .row:last-child {
@@ -43,23 +30,18 @@ body {background: white;}
     }
 .cell {
     display: block;
-    width: 100%;
+    width: 100% !important;
     }
 .label_collapse {
     display: inline-block;
-    width: 20%;
+    width: 30%;
     text-align: right;
     margin-right: 0.6em;
-    background-color: grey;
     overflow: hidden;
     }
 .content {
     display: inline-block;
     overflow: hidden;
     }
-.striped {
-    background-color: white;
-    }
-
 }
 
