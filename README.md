@@ -20,3 +20,9 @@ The App.js file provides an example of its use:
 - render the ResponsiveTable component
 
 Note that data array in App.js illustrates that the property names in each row data object are irrelevant. The data are just tuples of values independent of their attribute names
+
+### Upcoming Changes (I think..)
+
+The current design is based on CSS Modules: https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/
+
+I'm looking at the Styled Component Library as a mor efficient alternative: https://styled-components.com/
