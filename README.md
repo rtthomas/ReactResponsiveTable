@@ -9,4 +9,6 @@ I haven't found a simple React table component that displays a table responsivel
 Most of the components I've found so far just add horizontal scrollbars
 
 ### Usage
-Just copy the responsiveTable.js file into your project. All required styling including the responsive transition is implemented with React Styled Components
+Install Styled Components: npm install styled-components
+
+Then just the responsiveTable.js file into your project. 
