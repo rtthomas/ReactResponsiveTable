@@ -17,15 +17,27 @@ const responsiveTable = props => {
         textAlign: 'left',
         border: props.border ? props.border : '1px solid black'
     }
+    let colors;
+    if (props.colors){
+        const override = props.colors;
+        colors = {
+            headerText: override.headerText ?  override.headerText : 'white',
+            headerBg: override.headerBg ?  override.headerBg : 'black',
+            rowText: override.rowText ?  override.rowText : 'black',
+            rowBg: override.rowBg ? override.rowBg : 'white',
+            rowStripe: override.rowStripe ?  override.rowStripe : 'gainsboro'
+        }
+    }
+
     return (
         <div style={tableStyle}>
-            <StyledHeader labels={props.labels} cellWidth={cellWidth} colors={props.colors} />
+            <StyledHeader labels={props.labels} cellWidth={cellWidth} colors={colors} />
             {props.data.map((datum, index) => {
                 return (
                     <StyledRow data={datum} 
                         striped={index % 2 === 1} 
                         labels={props.labels} 
-                        colors={props.colors} 
+                        colors={colors} 
                         cellWidth={cellWidth} 
                         primary={props.primary} key={index}/>
                 )

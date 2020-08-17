@@ -23,17 +23,17 @@ function App() {
     ]
     const colors = {
         headerText: 'white',
-        headerBg: 'black',
+        headerBg: 'orange',
         rowText: 'black',
         rowBg: 'white',
-        rowStripe: 'magenta'
+        rowStripe: 'gainsboro'
     }
 
-    const border = '2px solid green'
+    const border = '1px solid black'
 
     return (
         <div className="App">
-            <ResponsiveTable data={data} labels={labels} colors={colors} primary={2}/>
+            <ResponsiveTable data={data} labels={labels} colors={colors} border={border}/>
         </div>
     );
 }
