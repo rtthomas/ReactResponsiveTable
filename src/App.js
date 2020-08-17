@@ -3,7 +3,11 @@ import './App.css';
 import ResponsiveTable from './responsiveTable'
 
 function App() {
+
+    // Define the column header labels
     const labels = ['Alpha', 'Beta', 'Gamma']
+
+    // Row data can be objects or arrays
     const data = [
         {
             foo: 'A',
@@ -21,16 +25,14 @@ function App() {
             'CCCCCC'
         ]
     ]
+    // Override the default header background color
     const colors = {
-        headerText: 'white',
-        headerBg: 'orange',
-        rowText: 'black',
-        rowBg: 'white',
-        rowStripe: 'gainsboro'
+        headerBg: 'orange' 
     }
+    // Overrides the default border
+    const border = '2px solid red'
 
-    const border = '1px solid black'
-
+    // The overriding colors and border attributes are optional 
     return (
         <div className="App">
             <ResponsiveTable data={data} labels={labels} colors={colors} border={border}/>

@@ -8,8 +8,8 @@ import styled from 'styled-components'
  * Generates a Table component
  * @param {string array} props.labels Column labels  
  * @param {object array} props.data Table data, one element per row 
- * @param {number} props.primary (Optional) index of the column whose cell value will appear as the "cell label" in the responsive view 
- * @returns the Table 
+ * @param {object} props.colors (Optional) Color override values 
+ * @param {string} props.border (Optional) Border override style 
  */
 const responsiveTable = props => {
     const cellWidth = ((1 / props.labels.length) * 100).toString().split('.')[0];
@@ -17,7 +17,15 @@ const responsiveTable = props => {
         textAlign: 'left',
         border: props.border ? props.border : '1px solid black'
     }
-    let colors;
+    const defaultColors = {
+        headerText: 'white',
+        headerBg: 'black',
+        rowText: 'black',
+        rowBg: 'white',
+        rowStripe: 'gainsboro'
+
+    }
+    var colors;
     if (props.colors){
         const override = props.colors;
         colors = {
@@ -27,6 +35,9 @@ const responsiveTable = props => {
             rowBg: override.rowBg ? override.rowBg : 'white',
             rowStripe: override.rowStripe ?  override.rowStripe : 'gainsboro'
         }
+    }
+    else {
+        colors = defaultColors;
     }
 
     return (
@@ -64,14 +75,6 @@ const StyledHeader = styled(Header)`
         display: none;
     }
 `
-
-/**
- * Generates a Row component
- * @param {object} props.data The row data 
- * @param {string array} props.labels Column labels  
- * @param {number} props.primary (Optional) index of the column whose cell value will appear as the "cell label" in the responsive view 
- * @returns the Row
- */
 const Row = props => {
     const values = Object.values(props.data)
     return <div className={props.className}>
@@ -126,6 +129,5 @@ const CellContent  = styled.div`
         overflow: hidden;
     }
 `
-
 export default responsiveTable;
 
