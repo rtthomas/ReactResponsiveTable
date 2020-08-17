@@ -1,37 +1,39 @@
 import React from 'react';
 import './App.css';
 import ResponsiveTable from './responsiveTable'
-// import { findRenderedComponentWithType } from 'react-dom/test-utils';
 
 function App() {
     const labels = ['Alpha', 'Beta', 'Gamma']
     const data = [
         {
-            alpha: 'A',
-            beta: 'B',
+            foo: 'A',
+            xxx: 'B',
             gamma: 'C'
         },
         {
             alpha: 'AA',
-            beta: 'BB',
+            yyy: 'BB',
             gamma: 'CC'
         },
-        {
-            alpha: 'AAA',
-            beta: 'BBB',
-            gamma: 'CCCCCC'
-        }
+        [
+            'AAA',
+            'BBB',
+            'CCCCCC'
+        ]
     ]
     const colors = {
         headerText: 'white',
         headerBg: 'black',
         rowText: 'black',
         rowBg: 'white',
-        rowStripe: 'gainsboro'
+        rowStripe: 'magenta'
     }
+
+    const border = '2px solid green'
+
     return (
         <div className="App">
-            <ResponsiveTable data={data} labels={labels} colors = {colors} primary={2}/>
+            <ResponsiveTable data={data} labels={labels} colors={colors} primary={2}/>
         </div>
     );
 }

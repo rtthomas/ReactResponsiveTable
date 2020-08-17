@@ -2,7 +2,7 @@
 * A responsive table component. It switches from a conventional table to the Collapse By Rows form
 */
 import React from 'react';
-import classes from './responsiveTable.module.css'
+import styled from 'styled-components'
 
 /**
  * Generates a Table component
@@ -13,42 +13,45 @@ import classes from './responsiveTable.module.css'
  */
 const responsiveTable = props => {
     const cellWidth = ((1 / props.labels.length) * 100).toString().split('.')[0];
+    const tableStyle = {
+        textAlign: 'left',
+        border: props.border ? props.border : '1px solid black'
+    }
     return (
-        <div className={classes.table}>
-            <Header labels={props.labels} cellWidth={cellWidth} colors={props.colors} />
+        <div style={tableStyle}>
+            <StyledHeader labels={props.labels} cellWidth={cellWidth} colors={props.colors} />
             {props.data.map((datum, index) => {
                 return (
-                    <Row data={datum} 
-                    striped={index % 2 === 1} 
-                    labels={props.labels} 
-                    colors={props.colors} 
-                    cellWidth={cellWidth} 
-                    primary={props.primary} key={index}/>
+                    <StyledRow data={datum} 
+                        striped={index % 2 === 1} 
+                        labels={props.labels} 
+                        colors={props.colors} 
+                        cellWidth={cellWidth} 
+                        primary={props.primary} key={index}/>
                 )
             })}
         </div>
      )
 }
 
-/**
- * Generates a Header component
- * @param {string array} props.labels Column labels  
- * @returns the Header 
- */
 const Header = props => {
     const labelStyle = { width: props.cellWidth + '%' }
-    const colorStyles = { 
-        backgroundColor : props.colors.headerBg,
-        color: props.colors.headerText
-    }
-    return (
-        <div className={classes.header} style={colorStyles}>
+    return <div className={props.className}>
             {props.labels.map((label, index) => {
                 return <div style={labelStyle} key={index}>{label}</div>
             })}
-        </div>
-    )
+    </div>
 }
+
+const StyledHeader = styled(Header)`
+    color: ${props => props.colors.headerText};
+    background-color: ${props => props.colors.headerBg};
+    display: flex;
+    padding: 0.2em;
+    @media all and (max-width: 768px) {
+        display: none;
+    }
+`
 
 /**
  * Generates a Row component
@@ -59,38 +62,58 @@ const Header = props => {
  */
 const Row = props => {
     const values = Object.values(props.data)
-    const rowClasses = [classes.row];
-    let colorStyles = {color: props.colors.rowText}
-    if (props.striped){
-        colorStyles.backgroundColor = props.colors.rowStripe
-    } 
-    return (
-        <div className={rowClasses} style={colorStyles}>
+    return <div className={props.className}>
             {values.map((value, index)=> {
-                return <Cell value={value} label={props.labels[index]} width={props.cellWidth} colors={props.colors} primary = {props.primary === index} key={index}/>
+                return (
+                    <StyledCell width={props.cellWidth} colors={props.colors} 
+                        primary = {props.primary === index} key={index}>
+                            <CollapsedLabel>{props.labels[index]}</CollapsedLabel>
+                            <CellContent>{value}</CellContent>
+                    </StyledCell>
+                )
             })}
-        </div>
-    )
+    </div>
 }
 
-/**
- * Generates a Cell component
- * @param {string} props.label The 
- * @param {string array} props.labels Column labels  
- * @param {boolean} props.primary If true, this cell the top when the row is displayed in the responsive form  
- * @returns the Cell
- */
-const Cell = props => {
-    const style = { width: props.width + '%' }
-    const outerClasses = classes.cell;
-    return (
-        <div className={outerClasses} style={style}>
-            <div className={classes.label_collapse} >{props.label}</div>
-            <div className={classes.content} >{props.value}</div>
-        </div>
-    )
-
+const StyledRow = styled(Row)`
+    display: flex;
+    padding: 0.2em;
+    color: ${props => props.colors.rowText};
+    background-color: ${props => props.striped ? props.colors.rowStripe : props.colors.rowBg};
+    @media all and (max-width: 768px) {
+        flex-direction: column;
+    }
+`
+const Cell = ({ className, children }) => {
+    return <div className={className}>
+        {children}
+    </div>
 }
+
+const StyledCell = styled(Cell)`
+    overflow: hidden;
+    width: ${props => props.width + '%'};
+    @media all and (max-width: 768px) {
+        display: block;
+        width: 100% !important;    
+    }
+`
+const CollapsedLabel = styled.div`
+    display: none;
+    @media all and (max-width: 768px) {
+        display: inline-block;
+        width: 30%;
+        text-align: right;
+        margin-right: 0.6em;
+        overflow: hidden;    
+    }
+`
+const CellContent  = styled.div`
+    @media all and (max-width: 768px) {
+        display: inline-block;
+        overflow: hidden;
+    }
+`
 
 export default responsiveTable;
 
