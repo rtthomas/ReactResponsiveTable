@@ -13,6 +13,6 @@ The ResponsiveTable requires React Styled Components. In your project folder:
     >npm install styled-components
 
 If you want sortable columns, include a font awsome stylesheet for rendering the sort direction icons:
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" crossorigin="anonymous">
+    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 
 Then just copy responsiveTable.js file into your project. The provided App.js component illustrates it's use.  
