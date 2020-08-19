@@ -8,11 +8,13 @@ class App extends Component {
         super(props);
 
         this.state = {
-            column: undefined,      // optional
-            ascending: undefined,   // optional
+            column: undefined,      // OPTIONAL, index of column on which data ios sorted
+            ascending: undefined,   // OPTIONAL, true is sort is ascending
+            
             // Define the column header labels 
             labels:['Alpha', 'Beta', 'Gamma'],  
-             // Row data can be objects or arrays   
+            
+            // Row data can be objects or arrays   
             data: [                         
                 {
                     foo: 'fee',
@@ -30,11 +32,11 @@ class App extends Component {
                     'grey'
                 ]
             ],
-            // OPTIONAL: Override the default header background color
+            // OPTIONAL: Override one or more color defaults
             colors: {              
                 headerBg: 'orange' 
             },
-            // OPTIONAL: Overrides the default border
+            // OPTIONAL: Override the default border
             border: '2px solid red'
         }
         // OPTIONAL sort method
