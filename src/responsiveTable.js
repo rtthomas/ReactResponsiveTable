@@ -1,48 +1,31 @@
 /*
 * A responsive table component. It switches from a conventional table to the Collapse By Rows form
 */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
+import { CardColumns } from 'react-bootstrap';
 
 /**
  * Generates a Table component
  * @param {string array} props.labels Column labels  
  * @param {object array} props.data Table data, one element per row 
  * @param {object} props.colors (Optional) Color override values 
- * @param {string} props.border (Optional) Border override style 
+ * @param {string} props.border (Optional) Border override style
+ * @param {object} props.enableSort (Optional) 
  */
 const responsiveTable = props => {
     const cellWidth = ((1 / props.labels.length) * 100).toString().split('.')[0];
+    
     const tableStyle = {
         textAlign: 'left',
         border: props.border ? props.border : '1px solid black'
     }
-    const defaultColors = {
-        headerText: 'white',
-        headerBg: 'black',
-        rowText: 'black',
-        rowBg: 'white',
-        rowStripe: 'gainsboro'
 
-    }
-    var colors;
-    if (props.colors){
-        const override = props.colors;
-        colors = {
-            headerText: override.headerText ?  override.headerText : 'white',
-            headerBg: override.headerBg ?  override.headerBg : 'black',
-            rowText: override.rowText ?  override.rowText : 'black',
-            rowBg: override.rowBg ? override.rowBg : 'white',
-            rowStripe: override.rowStripe ?  override.rowStripe : 'gainsboro'
-        }
-    }
-    else {
-        colors = defaultColors;
-    }
+    const colors = setColors(props.colors)
 
     return (
         <div style={tableStyle}>
-            <StyledHeader labels={props.labels} cellWidth={cellWidth} colors={colors} />
+            <StyledHeader labels={props.labels} cellWidth={cellWidth} colors={colors} enableSort={props.enableSort}/>
             {props.data.map((datum, index) => {
                 return (
                     <StyledRow data={datum} 
@@ -57,11 +40,61 @@ const responsiveTable = props => {
      )
 }
 
+/**
+ * Establishes the colors from defaults and override values from the component properties
+ * @param propColors (Optional) one or more color override attributes
+ * @return the combined colors
+ */ 
+const setColors = propColors => {
+    const defaultColors = {
+        headerText: 'white',
+        headerBg: 'black',
+        rowText: 'black',
+        rowBg: 'white',
+        rowStripe: 'gainsboro'
+    }
+    if (propColors){
+        return {
+            headerText: propColors.headerText ?  propColors.headerText : 'white',
+            headerBg: propColors.headerBg ?  propColors.headerBg : 'black',
+            rowText: propColors.rowText ?  propColors.rowText : 'black',
+            rowBg: propColors.rowBg ? propColors.rowBg : 'white',
+            rowStripe: propColors.rowStripe ?  propColors.rowStripe : 'gainsboro'
+        }
+    }
+    else {
+        return defaultColors;
+    }
+}
+
+/**
+ * Creates the Header
+ * @param {*} props 
+ */
 const Header = props => {
     const labelStyle = { width: props.cellWidth + '%' }
+    
+    const doSort = props.enableSort ? props.enableSort.doSort : undefined;
+    const sortColumn = props.enableSort ? props.enableSort.column : undefined;
+    const ascending = props.enableSort ? props.enableSort.ascending : undefined;
+
     return <div className={props.className}>
             {props.labels.map((label, index) => {
-                return <div style={labelStyle} key={index}>{label}</div>
+                if (doSort && sortColumn === index){
+                    if (ascending){
+                        return <div style={labelStyle} key={index} onClick={(e) => doSort(index)}>
+                            {label}<span className="fas fa-caret-down fa-lg"></span>
+                        </div>
+                    }
+                    else {
+                        return <div style={labelStyle} key={index} onClick={(e) => doSort(index)}>
+                            {label}<span className="fas fa-caret-up fa-lg"></span>
+                        </div>
+                    }
+                }
+                else {
+                    return <div style={labelStyle} key={index} onClick={(e) => doSort(index)}>{label}</div>
+                }
             })}
     </div>
 }
